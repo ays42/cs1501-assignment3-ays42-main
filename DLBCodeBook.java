@@ -34,6 +34,7 @@
       if(str.length() > 0){
         add(root, code, str, 0);
       }
+      System.err.println(str + " " + code + " W = " + W); // debugging print statment - use str
       code++;
     }
   }
@@ -114,7 +115,7 @@
         L *= 2; //double codebook size 
         haveRoom = true;
       } else {
-        if(flushIfFull) { //check flushIsFull
+        if(flushIfFull) { //check flushIfFull
           initialize();
           haveRoom = true;
         } else { // else, other code in method won't run
@@ -128,6 +129,8 @@
         new DLBNode(currentPrefix.charAt(currentPrefix.length()-1));
   
       newNode.codeword = code;
+      System.err.println(currentPrefix.toString() + " " + code + " W = " + W); // debugging print statment - use currentPrefix
+
       code++;
       newNode.sibling = currentNode.child;
       currentNode.child = newNode;        

@@ -23,16 +23,20 @@ public class ArrayCodeBook implements ExpansionCodeBookInterface {
 
 
     public int getCodewordWidth(boolean flushIfFull) {
-        if(code >= L && W < maxW) 
+        if(code >= L && W < maxW) {
             return W + 1;
+        }
         if(code >= L && W == maxW) {
-            if(flushIfFull)
+            if(flushIfFull) {
                 return minW;
-           else
+            }
+            else {
                 return maxW;
+            }
         }
         return W;
     }
+
     private void initialize(){
         codebook = new String[1 << maxW];
         W = minW;
@@ -53,8 +57,8 @@ public class ArrayCodeBook implements ExpansionCodeBookInterface {
         // write same logic here
         if(code < L){ //codebook is not full
             haveRoom = true;
-          }
-          if(code >= L) { //codebook is full
+        }
+        if(code >= L) { //codebook is full
             if(W < maxW) { //check if W surpasses max
               W++;
               L *= 2; //double codebook size 
@@ -67,10 +71,11 @@ public class ArrayCodeBook implements ExpansionCodeBookInterface {
                 haveRoom = false;
               }
             }
-          }
+        }
 
         if(haveRoom){
             codebook[code] = str;
+            System.err.println(str + " " + code + " W = " + W); // debugging print statment - use str   
             code++;
         }
     }
