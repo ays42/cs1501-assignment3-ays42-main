@@ -114,7 +114,7 @@
         W++;
         L *= 2; //double codebook size 
         haveRoom = true;
-      } else {
+      } else if(W >= maxW) {
         if(flushIfFull) { //check flushIfFull
           initialize();
           haveRoom = true;

@@ -53,23 +53,19 @@ public class ArrayCodeBook implements ExpansionCodeBookInterface {
         if(code < L){
             haveRoom = true;
         }
-
         // write same logic here
-        if(code < L){ //codebook is not full
-            haveRoom = true;
-        }
         if(code >= L) { //codebook is full
             if(W < maxW) { //check if W surpasses max
               W++;
               L *= 2; //double codebook size 
               haveRoom = true;
-            } else {
-              if(flushIfFull) { //check flushIsFull
-                initialize();
-                haveRoom = true;
-              } else { // else, other code in method won't run
-                haveRoom = false;
-              }
+            } else if(W >= maxW) {
+                if(flushIfFull) { //check flushIfFull
+                    initialize();
+                    haveRoom = true;
+                } else { // else, other code in method won't run
+                    haveRoom = false;
+                }
             }
         }
 

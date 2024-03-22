@@ -33,7 +33,7 @@ public class LZW {
         int codeword = codebook.getCodeWord();
         BinaryStdOut.write(codeword, codebook.getCodewordWidth()); 
 
-        BinaryStdOut.write(R, codebook.getCodewordWidth()); 
+        BinaryStdOut.write(R, codebook.getCodewordWidth());
         BinaryStdOut.close();
     }
 
@@ -41,10 +41,10 @@ public class LZW {
     public static void expand() {
         ExpansionCodeBookInterface codebook = new ArrayCodeBook(9, 16); // change minW and maxW to 9 and 16
 
+        flushIfFull = BinaryStdIn.readBoolean(); // Read first bit of compressed file
+
         int codeword = BinaryStdIn.readInt(codebook.getCodewordWidth(flushIfFull));
         String val = codebook.getString(codeword);
-
-        flushIfFull = BinaryStdIn.readBoolean(); // Read first bit of compressed file
 
         while (true) {
             BinaryStdOut.write(val);
